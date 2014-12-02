@@ -25,7 +25,7 @@ public class MainFrame extends javax.swing.JFrame{
     private static final Dimension SIZE = new Dimension(800,600);
     
     private Panel panel = new Panel();
-    private Color c = Color.WHITE;
+    private Color c = StaticVars.shapeColor;
     
     
     
@@ -68,7 +68,7 @@ public class MainFrame extends javax.swing.JFrame{
 
         jToolBar1.setRollover(true);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Obdelnik", "Oval", "Tuzka", " " }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Obdelnik", "Oval", "Tuzka", "Usecka" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -79,7 +79,7 @@ public class MainFrame extends javax.swing.JFrame{
         jLabel1.setText("Barva");
         jToolBar1.add(jLabel1);
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setText("       ");
         jButton1.setToolTipText("");
         jButton1.setFocusable(false);
@@ -176,6 +176,9 @@ public class MainFrame extends javax.swing.JFrame{
         case 2: 
             StaticVars.shapeType = "Tuzka";
             break;
+        case 3: 
+            StaticVars.shapeType = "Usecka";
+            break;    
         default:
             StaticVars.shapeType = "Obdelnik";   
        } 

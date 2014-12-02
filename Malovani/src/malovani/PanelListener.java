@@ -9,6 +9,7 @@ package malovani;
  * @author x
  */
 import java.awt.Color;
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -71,9 +72,14 @@ public class PanelListener implements MouseListener,MouseMotionListener{
 
     @Override
     public void mouseDragged(MouseEvent e) {
+        if(drawShape instanceof Pencil){
+        ((Pencil) drawShape).addPoint(new Point(e.getX(), e.getY()));
+        
+        }
+        else{
         drawShape.setX2(e.getX());
         drawShape.setY2(e.getY());
-        
+        }
         panel.setTmpShape(drawShape);
         panel.repaint();
     }
@@ -91,6 +97,8 @@ public class PanelListener implements MouseListener,MouseMotionListener{
                 return new Oval( x, y, x2, y2, StaticVars.shapeColor);
             case "Tuzka":
                 return new Pencil( x, y, x2, y2, StaticVars.shapeColor);
+            case "Usecka":
+                return new Line( x, y, x2, y2, StaticVars.shapeColor);    
             default:
                 return new Square( x, y, x2, y2, StaticVars.shapeColor);
         }

@@ -6,8 +6,10 @@
 package malovani;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,17 +17,25 @@ import java.awt.Graphics;
  */
 public class Pencil extends Shape{
 
+    private List<Point> points = new ArrayList<>();
+    
     public Pencil(int x, int y, int x2, int y2, Color c) {
         super(x, y, x2, y2, c);
+        points.add(new Point(x,y));
     }
     
     @Override
     public void render(Graphics g) {
         
        g.setColor(getColor());
-       g.setFont(new Font("Ariel",Font.PLAIN, 20));
-       g.drawString("Tuzka", getX()-20, getY()-20);
-       //g.fillRect(getX(), getY(), calcWidth(), calcHeigth());   
+       
+       for(Point p: points){
+       g.fillOval((int)p.getX(),(int)p.getY(), 1, 1);  
+       }
+    }
+    
+    public void addPoint(Point p){
+        points.add(p);    
     }
     
 }

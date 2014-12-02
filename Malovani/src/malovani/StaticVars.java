@@ -14,6 +14,6 @@ import java.awt.Color;
 public class StaticVars {
     
     public static String shapeType = "Obdelnik";
-    public static Color shapeColor = Color.WHITE;
+    public static Color shapeColor = Color.BLACK;
     
 }
