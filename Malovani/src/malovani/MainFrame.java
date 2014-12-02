@@ -12,8 +12,18 @@ package malovani;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.JColorChooser;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class MainFrame extends javax.swing.JFrame{
 
@@ -26,7 +36,7 @@ public class MainFrame extends javax.swing.JFrame{
     
     private Panel panel = new Panel();
     private Color c = StaticVars.shapeColor;
-    
+    private MainFrame nf;
     
     
    
@@ -42,6 +52,10 @@ public class MainFrame extends javax.swing.JFrame{
         
         
     } 
+    
+    public Panel getPanel(){
+        return panel;
+    }
          
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -56,6 +70,7 @@ public class MainFrame extends javax.swing.JFrame{
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -107,6 +122,14 @@ public class MainFrame extends javax.swing.JFrame{
 
         jMenuItem2.setText("Ulozit");
         jMenu1.add(jMenuItem2);
+
+        jMenuItem10.setText("Ulozit jako");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem10);
 
         jMenuItem4.setText("Exit");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
@@ -197,6 +220,45 @@ public class MainFrame extends javax.swing.JFrame{
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        Panel p = panel;
+        int w = p.getWidth();
+        int h = p.getHeight();
+        
+        BufferedImage b1 = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g2d = b1.createGraphics();
+        p.paint(g2d);
+        
+        JFileChooser chooser = new JFileChooser();
+        chooser.addChoosableFileFilter(new FileNameExtensionFilter("PNG (.png)", "png"));
+        chooser.addChoosableFileFilter(new FileNameExtensionFilter("JPG (.jpg)", "jpg"));
+        chooser.addChoosableFileFilter(new FileNameExtensionFilter("JPEG (.jpeg)", "jpeg"));
+        chooser.addChoosableFileFilter(chooser.getChoosableFileFilters()[1]);
+        
+        
+        
+        int r = chooser.showSaveDialog(panel);
+        
+        if(r == JFileChooser.APPROVE_OPTION){
+        
+            File out = chooser.getSelectedFile();
+            String ext = out.getName().substring(out.getName().lastIndexOf(".") + 1);
+            
+            if(ext.equalsIgnoreCase("png")||ext.equalsIgnoreCase("jpg")||ext.equalsIgnoreCase("jpeg")){
+            try {
+                ImageIO.write(b1, ext, out);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Spatna delka", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+        
+        }
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -207,6 +269,7 @@ public class MainFrame extends javax.swing.JFrame{
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
