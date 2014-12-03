@@ -27,23 +27,42 @@ public class Oval extends Shape{
          if((w < 0) && (h < 0)){
              w = Math.abs(w);
              h = Math.abs(h);
-             
+            if(StaticVars.shapedFiled){ 
               g.fillOval(getX2(), getY2(), w, h);
+            }
+            else{
+                g.drawOval(getX2(), getY2(), w, h);
+            }
          }
          else if((w < 0) && (h >= 0)){
              w = Math.abs(w);
              h = Math.abs(h);
              
-             g.fillOval(getX2(), getY(), w, h);
+             if(StaticVars.shapedFiled){ 
+              g.fillOval(getX2(), getY(), w, h);
+            }
+            else{
+                g.drawOval(getX2(), getY(), w, h);
+            }
              
          }else if((w >= 0) && (h < 0)){
              w = Math.abs(w);
              h = Math.abs(h);
              
-             g.fillOval(getX(), getY2(), w, h);
+             if(StaticVars.shapedFiled){ 
+              g.fillOval(getX(), getY2(), w, h);
+            }
+            else{
+                g.drawOval(getX(), getY2(), w, h);
+            }
              
          }else{
-             g.fillOval(getX(), getY(), w, h);
+             if(StaticVars.shapedFiled){ 
+              g.fillOval(getX(), getY(), w, h);
+            }
+            else{
+                g.drawOval(getX(), getY(), w, h);
+            }
          }
         
         

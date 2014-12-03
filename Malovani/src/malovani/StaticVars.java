@@ -15,5 +15,6 @@ public class StaticVars {
     
     public static String shapeType = "Obdelnik";
     public static Color shapeColor = Color.BLACK;
+    public static boolean shapedFiled = false;
     
 }

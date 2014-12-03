@@ -30,7 +30,7 @@ public class Pencil extends Shape{
        g.setColor(getColor());
        
        for(Point p: points){
-       g.fillOval((int)p.getX(),(int)p.getY(), 1, 1);  
+       g.fillOval((int)p.getX(),(int)p.getY(),10,10);  
        }
     }
     

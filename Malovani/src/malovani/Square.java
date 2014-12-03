@@ -17,7 +17,12 @@ public class Square extends Shape {
     @Override
     public void render(Graphics g) {
        g.setColor(getColor());
-       g.fillRect(getX(), getY(), calcWidth(), calcHeigth());
+       if(StaticVars.shapedFiled){
+            g.fillRect(getX(), getY(), calcWidth(), calcHeigth());
+       }
+       else{
+           g.drawRect(getX(), getY(), calcWidth(), calcHeigth());
+       }
     }
     
 }
